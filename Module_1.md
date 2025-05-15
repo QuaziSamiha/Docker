@@ -22,4 +22,38 @@
 
 - so why don't we use virtual machine as docker?
 
-![alt text](image.png)
+  - because we keep only one project into one virtual machine to make it isolate. so multiple projects need multiple virtual machines. so we need to keep multiple virtual machine in our host os. after a certain time we will face storage shortage.
+  - wastes a lot of space on your hard drive and tends to be slow.
+
+- `Virtual Machine / Virtual OS Pros and Cons`:
+  | Pros | Cons |
+  |--------------------------------------|----------------------------------------------------------------------|
+  | Separated environments | Redundant duplication, waste of space |
+  | Environment-specific configuration | Performance can be slow, boot times can be long |
+  | Environment configuration can be shared and reproduced reliably | Reproducing on another computer/server is possible but may still be tricky |
+
+- docker helps you build & manage 'containers'
+
+- docker also (like Virtual machine) works on os, it has a docker engine, but docker doesn't installed any virtual os (like vm), so the space for os is totally minimized.
+
+- virtual machine : container with libraries, dependencies, tools, and os.
+- docker : container with libraries, dependencies, tools, but without os.
+
+- image or blueprint - we share it.
+- if we don't use any container in docker we can delete it, and by using the image or blueprint we can recreate the container again.
+- but deleting an vm container and recreate it is not easy.
+
+### 1-4 Docker Setup
+
+- for windows & macOS:
+  - requirements met : install docker desktop
+  - requirements not met : install docker toolbox
+- for linux:
+  - by default support docker and docker run in linux environment
+  - install docker engine
+
+### 1-5 Docker Installation [Windows]
+
+- [install](https://docs.docker.com/desktop/setup/install/windows-install/)
+- WSL - windows subsystem for linux - a way to use docker or linux natively within windows (as windows not support docker)
+- WSL - one kind of virtual machine
