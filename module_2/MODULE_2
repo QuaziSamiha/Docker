@@ -1,0 +1,41 @@
+**17 May, 25**
+
+# Module 2
+
+- [Docker Cheat Sheet](https://find-saminravi99.notion.site/Docker-Cheat-Sheet-10dc48b8ac8c80b79f73ece2abfc6841?pvs=4)
+
+- [GitHub Link](https://github.com/Apollo-Level2-Web-Dev/docker-with-typescript-backend/tree/module-2)
+
+## 2-1 What is Images & Containers?
+
+- Container is an unit of software
+- Images VS Container
+  container is The running 'unit of software'
+  image is the templates/blueprints for container
+  image contains code + required tools/runtimes
+  multiple containers can be created based on one image
+  image is the read only
+  image has code and environment
+  we can create read and write within container, we can change code within container.
+
+# Docker Image vs Container
+
+| Aspect       | Docker Image                                          | Docker Container                              |
+| ------------ | ----------------------------------------------------- | --------------------------------------------- |
+| Definition   | A template or blueprint for creating containers       | A running instance of a Docker image          |
+| Nature       | Read-only                                             | Read and write                                |
+| Content      | Contains application code and required tools/runtimes | Contains the running code and environment     |
+| Usage        | Used to create one or more containers                 | Executes the application using an image       |
+| Modification | Cannot be modified after it's built                   | Can be modified during runtime                |
+| Persistence  | Persistent and reusable template                      | Temporary by default, unless volumes are used |
+| Number       | One image can spawn multiple containers               | Each container is an isolated instance        |
+
+## 2-2 Using Pre-built Images
+
+### Finding/Creating Image
+
+- we need an image
+- we can get image in two ways:
+  1.  prebuilt image (via docker hub)
+  2.  write your own custom image (write your own dockerfile - based on another image)
+- [Docker Hub](https://hub.docker.com/)
