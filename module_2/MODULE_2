@@ -39,3 +39,13 @@
   1.  prebuilt image (via docker hub)
   2.  write your own custom image (write your own dockerfile - based on another image)
 - [Docker Hub](https://hub.docker.com/)
+
+**1 June, 25**
+
+## 2-3 Writing Our First Dockerfile
+
+- in previous video we learn how to use a prebuilt image and run it and run a container through it.
+
+- create 'Dockerfile' without any extension within a root folder of a project.
+- Instruction & Explanation:
+  - `FROM node:20` : by using FROM keyword we are declaring our environment. When the container will run, node version 20 will be installed in that container. This is the base layer.
