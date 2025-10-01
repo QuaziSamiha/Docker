@@ -1,26 +1,27 @@
 **14 May, 25**
+**1 Oct**
 
 ## 1-1 Get Started With Docker
 
 ## 1-2 What is Docker & Why?
 
-- `what is docker & why` ?
+- What is docker & why ?
 
   - Docker is a container technology. A tool for creating and managing containers.
 
-- what is container ?
+- What is container ?
   - A standardize unit of software. A package of code and dependencies to run that code (e.g NodeJS Code + the NodeJS runtime)
   - The same container always yields the exact same application and execution behavior! No matter where or by whom it might be executed.
 
 ## 1-3 Virtual Machine vs. Docker Containers
 
-- `What is virtual machine`: It is like a physical computer but it has no physical existence, work like a totally isolated machine ( suppose you have two desktop pc, between them one has windows OS and another has linux OS. They totally run in a isolate way. These two pc has no communication. In the same way when we installed a virtual machine (which has its own virtual os) on our host operating system, this virtual machine work isolately by using its own os.)
+- What is `Virtual Machine(VM)`: It is like a physical computer but it has no physical existence, work like a totally isolated machine ( suppose you have two desktop pc, between them one has windows OS and another has linux OS. They totally run in a isolate way. These two pc has no communication. In the same way when we installed a virtual machine (which has its own virtual os) on our host operating system, this virtual machine work isolately by using its own os.)
 
 - We can do the same task of docker by using virtual machine.
 
 - Suppose we build a project in our virtual machine, and then we share this virtual machine with our team mates, then they can run the project within the virtual machine and get the same output as mine.
 
-- `So why don't we use virtual machine as docker?`
+- So why don't we use `virtual machine` as `docker`?
 
   - Because we keep only one project into one virtual machine to make it isolate. So multiple projects need multiple virtual machines. So we need to keep multiple virtual machine in our host OS. After a certain time we will face storage shortage.
   - Wastes a lot of space on your hard drive and tends to be slow.
