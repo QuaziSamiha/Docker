@@ -9,16 +9,16 @@
 ## 2-1 What is Images & Containers?
 
 - Container is an unit of software
-- Images VS Container
-  container is The running 'unit of software'
-  image is the templates/blueprints for container
-  image contains code + required tools/runtimes
-  multiple containers can be created based on one image
-  image is the read only
-  image has code and environment
-  we can create read and write within container, we can change code within container.
+- Images VS Container:
+  - Container is the running 'unit of software' and
+    image is the templates/blueprints for container.
+  - Image contains code + required tools/runtimes.
+  - Multiple containers can be created based on one image.
+  - Image is the read only.
+  - Image has code and environment.
+  - We can create, read and write within container, we can change code within container.
 
-# Docker Image vs Container
+### Docker Image vs Container
 
 | Aspect       | Docker Image                                          | Docker Container                              |
 | ------------ | ----------------------------------------------------- | --------------------------------------------- |
@@ -34,18 +34,18 @@
 
 ### Finding/Creating Image
 
-- we need an image
-- we can get image in two ways:
-  1.  prebuilt image (via docker hub)
-  2.  write your own custom image (write your own dockerfile - based on another image)
+- We need an image
+- We can get image in two ways:
+  1.  Prebuilt image (via docker hub)
+  2.  Write your own custom image (write your own dockerfile - based on another image)
 - [Docker Hub](https://hub.docker.com/)
 
 **1 June, 25**
 
 ## 2-3 Writing Our First Dockerfile
 
-- in previous video we learn how to use a prebuilt image and run it and run a container through it.
+- In previous video we learn how to use a prebuilt image and run it and run a container through it.
 
 - create 'Dockerfile' without any extension within a root folder of a project.
 - Instruction & Explanation:
-  - `FROM node:20` : by using FROM keyword we are declaring our environment. When the container will run, node version 20 will be installed in that container. This is the base layer.
+  - `FROM node:20` : By using `FROM` keyword we are declaring our environment. When the container will run, node version 20 will be installed in that container. This is the base layer.
