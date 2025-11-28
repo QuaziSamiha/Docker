@@ -103,3 +103,40 @@ docker run -it node
 
 - `Dockerfile` mainly contains all the instruction to build the image.
 - Container has its own file system, own network system as it is a totally isolated system.
+
+**28 Nov, 25**
+
+## 2-4 Building an Image & Running Container Based On Our Image
+
+- Always check docker desktop logged in and the enginee is running.
+- run for building image for the docker-with-typescript-backend:
+
+```bash
+docker build .
+```
+
+- To see all images:
+
+```bash
+docker images
+```
+
+![alt text](/module_2/image10.PNG)
+
+- There is only one image. Copy the image id and run the image by following command:
+
+```bash
+docker run 7478f3725ef7
+```
+
+- To show only running containers / running process list:
+
+```bash
+docker ps
+```
+
+- To show both running and exit containers list:
+
+```bash
+docker ps -a
+```
