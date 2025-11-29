@@ -398,4 +398,162 @@ docker container start -a magical_ritchie
 
 - We can see each `docker image` `size` is huge.
 - Most of the space is taken by `node`.
-- So as many as we keep `docker image`, our storage will be reduced for this images. So we have to keep these images in managable state. 
+- So as many as we keep `docker image`, our storage will be reduced for this images. So we have to keep these images in managable state.
+
+**29 Nov, 25**
+
+- To `remove` one or multiple `docker images`
+
+```bash
+docker image rmi image_id
+docker image rmi image_id image_id
+```
+
+- But if any container (running or exited) is created by using that image id, we have to delete the container before trying to remove the image.
+
+```bash
+docker image rmi 586567fcc143
+```
+
+![alt text](/module_2/image31.PNG)
+
+- To `remove` one or multiple `docker container`.
+
+```bash
+docker container rm container_name
+docker container rm container_name container_name
+```
+
+- To `remove` all `docker container` at a time.
+
+```bash
+docker container prune
+```
+
+![alt text](/module_2/image32.PNG)
+
+- To `remove` all `docker image` at a time.
+
+```bash
+docker image prune
+```
+
+![alt text](/module_2/image33.PNG)
+
+- Again build image
+
+```bash
+docker image build .
+```
+
+![alt text](/module_2/image34.PNG)
+
+- We won't create any new container unless there is no change in our code base. But normally we will have changes in our codebase. So we have to create new container each time.
+- We can do a trick here. The container will be removed when it exited by the following command:
+
+```bash
+docker run -p local_port:container_port -rm image_id
+```
+
+```bash
+docker run -p 5001:5000 --rm 76deea2925b3
+```
+
+![alt text](/module_2/image35.PNG)
+![alt text](/module_2/image36.PNG)
+
+## 2-9 Naming & Tagging Container & Images
+
+```bash
+docker build -t image_name:version .
+```
+
+```bash
+docker build -t first-docker:v1 .
+```
+
+![alt text](/module_2/image37.PNG)
+
+- Run container using image name
+
+```bash
+docker run -p 5001:5000 --rm first-docker:v1
+```
+
+![alt text](/module_2/image38.PNG)
+
+- Naming container
+
+```bash
+docker run -p 5001:5000 --name docker-container1 --rm first-docker:v1
+docker ps
+```
+
+- To delete all custom named image
+
+```bash
+docker image prune -a
+```
+
+## 2-10 Pushing Docker Image to DockerHub
+
+```bash
+docker login
+```
+
+- [My Docker Account](https://app.docker.com/accounts/quazisamiha) - Logged in by GitHub
+
+![alt text](/module_2/image39.PNG)
+
+![alt text](/module_2/image40.PNG)
+
+- First repo name: quazisamiha/first-docker-repo
+
+![alt text](/module_2/image41.PNG)
+
+- Connect docker account with VS Code.
+
+![alt text](/module_2/image42.PNG)
+
+- Mismatch of docker image name in our local and docker hub
+
+![alt text](/module_2/image43.PNG)
+
+- Create a new image
+
+```bash
+docker build -t quazisamiha/first-docker-repo:v1 .
+```
+
+![alt text](/module_2/image44.PNG)
+
+- We can also rename the previous image.
+- `Push image` to `DockerHub` or publish a custom image to DockerHub.
+
+```bash
+docker push quazisamiha/first-docker-repo:v1
+```
+
+![alt text](/module_2/image45.PNG)
+
+## 2-11 Pulling Docker Image to DockerHub
+
+- Delete all custom image
+
+```bash
+docker image prune -a
+```
+
+![alt text](/module_2/image46.PNG)
+
+```bash
+docker logout
+```
+
+```bash
+docker pull quazisamiha/first-docker-repo:v1
+```
+
+![alt text](/module_2/image47.PNG)
+
+![alt text](/module_2/image48.PNG)
