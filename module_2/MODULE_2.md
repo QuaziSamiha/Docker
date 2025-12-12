@@ -557,3 +557,11 @@ docker pull quazisamiha/first-docker-repo:v1
 ![alt text](/module_2/image47.PNG)
 
 ![alt text](/module_2/image48.PNG)
+
+```bash
+docker run -p 5001:5000 --rm --name container-name2 quazisamiha/first-docker-repo:v1
+```
+
+- If we want to run a container without pulling docker image, there is some issues to get latest changes.
+
+- [View again](https://web.programming-hero.com/l2-b3-reward-courses/video/l2-b3-reward-courses-2-11-pulling-docker-image-to-dockerhub)
