@@ -252,3 +252,24 @@ docker volume prune
   - /same-path <----> /app/user-data
 - Volumes persist if a container shuts down. If a container (re-)starts and mounts a volume, any data inside of that volume is available in the container.
 - A contianer can write data into a volume and read data from it.
+
+**15 Dec, 25**
+
+- Bind mount is like container.
+- Volume (unknown location) and Bind mount (known location) both are folder in our local (outside of container).
+- But in bind mount we explicitly select the folder path in our local machine. if we make any change in this folder it reflect to the container and vice verse if any changes happen to the container it will reflect to our local machine folder. In this way we create a connection between our local machine and the container.
+
+```bash
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs://app/logs// -w //app -v "F://9. Docker/docker-with-typescript-backend-module3"://app --rm ts-docker-module3:v3
+```
+
+- `-v ts-docker-logs://app/logs//` here `-v` means named volume and `volume-name://app/logs` indicated volume name and `/app/logs` indicates our working directory app folder and logs folder within it. `-v "F:/9. Docker/docker-with-typescript-backend-module3"://app` here `-v` is for bind mount and we have to give `absolute` path and `//app` indicates. `-w //app` here `-w` indicates working directory.
+
+- right click on mouse on hover any file of root directory of project and select `Reveal in File Explorer`.
+
+## 3-7 Combining & Merging Different Volumes
+
+F:\9. Docker\docker-with-typescript-backend-module3\package.json
+
+- open git bash within project directory and select the path:
+  `/f/9. Docker/docker-with-typescript-backend-module3`
