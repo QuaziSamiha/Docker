@@ -497,5 +497,5 @@ docker build -t ts-docker-m3:v4 .
 - if `.env` file remain in any other directory
 
 ```bash
- docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "/$(PWD)":/app -v /app/node_modules --rm --env-file /config/.env ts-docker-module3:v3
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "/$(PWD)":/app -v /app/node_modules --rm --env-file /config/.env ts-docker-m3:v4
 ```
