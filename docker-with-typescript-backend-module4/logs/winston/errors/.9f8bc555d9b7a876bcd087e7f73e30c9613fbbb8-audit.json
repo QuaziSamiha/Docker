@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "F:\\9. Docker\\docker-with-typescript-backend-module4\\logs\\winston\\errors\\.9f8bc555d9b7a876bcd087e7f73e30c9613fbbb8-audit.json",
+    "files": [
+        {
+            "date": 1765891939281,
+            "name": "F:\\9. Docker\\docker-with-typescript-backend-module4\\logs\\winston\\errors\\docker-2025-12-16-19-error.log",
+            "hash": "e7b7701d67c1711b2b4ecd07bc8e45da239e6f58074187c61414c662d9c72274"
+        }
+    ],
+    "hashType": "sha256"
+}
