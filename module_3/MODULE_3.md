@@ -273,3 +273,157 @@ F:\9. Docker\docker-with-typescript-backend-module3\package.json
 
 - open git bash within project directory and select the path:
   `/f/9. Docker/docker-with-typescript-backend-module3`
+
+**16 Dec, 2025**
+
+```bash
+ docker run -p 5000:5000 `
+--name ts-docker-container3-module3 `
+-v ts-docker-logs:/app/logs `
+-v "F:/9. Docker/docker-with-typescript-backend-module3:/app" `
+-w /app `
+--rm ts-docker-module3:v3
+```
+
+```bash
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -v "F:/9. Docker/docker-with-typescript-backend-module3:/app" -w /app --rm ts-docker-module3:v3
+```
+
+```bash
+ docker run -p 5000:5000 `
+--name container-name `
+-v volume-name:the file/folder name which should keep within the container `
+-v "porject-path:/app" `
+-w /app `
+--rm image-name:image-tag
+```
+
+- bind mount = by running above command we are trying to connect the whole code base with container - but this will overwrite our current container code with these codebase code
+- when we will enter docker technology, we won't keep logs, node_modules folder in our local code base, we will try to manage all these folder within container.
+- so in our local code base we have no node_modules, logs folder.
+- so by running the above code our code code will overwrite to container, but our code base has no node_modules folder, so container node_modules will also remove.
+- so we have to tell container to copy our code base and overwrite it but except the node_modules folder.
+- so we have to make survive node_modules folder within container.
+- and whenever we talk about survive in docker, we need docker volume.
+- to do this we will add another volume with the above command, this volume will be anonymous volume.
+
+```bash
+ docker run -p 5000:5000 `
+--name ts-docker-container3-module3 `
+-v ts-docker-logs:/app/logs `
+-w /app `
+-v "F:/9. Docker/docker-with-typescript-backend-module3:/app" `
+-v /app/node_modules `
+--rm ts-docker-module3:v3
+```
+
+```bash
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "F:/9. Docker/docker-with-typescript-backend-module3:/app" -v /app/node_modules --rm ts-docker-module3:v3
+```
+
+- `-v /app/node_modules ` this part creating anonymous volume
+- anonymous volume will be deleted if container is deleted. but named-volume won't be deleted if the container is deleted.
+- we are keeping node_modules folder as anonymous volume because when a container will be created, node_modules will also created from package.json so we don't need to survive node_modules folder after deleting a container
+- at first we are providing named-volume (`-v ts-docker-logs:/app/logs`) because when container is created we need previous log data, and only named-volume is survived after deleting a container so we keep logs folder in named-volume.
+- `"F:/9. Docker/docker-with-typescript-backend-module3:/app"` - connecting whole app with container.
+
+- make a change to local code base app.ts file, and see the change in the website without building new image.
+
+```bash
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).send(`
+   <html>
+      <head>
+        <title>Docker Logs Viewer</title>
+        <link rel="stylesheet" href="/styles.css">
+      </head>
+      <body>
+        <h1>Welcome to the Docker Logs Viewer Page 16 Dec, 25!</h1>
+        <p>Go to <a href="/logs/errors">Error Logs</a> or <a href="/logs/successes">Success Logs</a>.</p>
+      </body>
+    </html>
+  `);
+});
+```
+
+## 3-8 Polishing The Bind Mount Command
+
+- but see the changes we have to add a flag in package.json
+
+```bash
+"dev": "ts-node-dev --respawn --transpile-only --poll src/server.ts",
+```
+
+- we added `--poll` flag
+
+- then run this command without building image :
+
+```bash
+ docker run -p 5000:5000 `
+--name ts-docker-container3-module3 `
+-v ts-docker-logs:/app/logs `
+-w /app `
+-v "F:/9. Docker/docker-with-typescript-backend-module3:/app" `
+-v /app/node_modules `
+--rm ts-docker-module3:v3
+```
+
+or
+
+```bash
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "F:/9. Docker/docker-with-typescript-backend-module3:/app" -v /app/node_modules --rm ts-docker-module3:v3
+```
+
+- optimize the above command (it can execute in git bash - not in powershell):
+
+```bash
+ docker run -p 5000:5000 `
+--name ts-docker-container3-module3 `
+-v ts-docker-logs:/app/logs `
+-w /app `
+-v "/$(pwd)":/app `
+-v /app/node_modules `
+--rm ts-docker-module3:v3
+```
+
+```bash
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "/$(pwd):/app" -v /app/node_modules --rm ts-docker-module3:v3
+```
+
+- `pwd` - present working directory
+- optimize the above command (it can execute in powershell):
+
+```bash
+ docker run -p 5000:5000 `
+--name ts-docker-container3-module3 `
+-v ts-docker-logs:/app/logs `
+-w /app `
+-v "${PWD}:/app" `
+-v /app/node_modules `
+--rm ts-docker-module3:v3
+```
+
+```bash
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "/${PWD}:/app" -v /app/node_modules --rm ts-docker-module3:v3
+```
+
+- `pwd` - present working directory
+- optimize the above command (it can execute in command prompt):
+
+```bash
+ docker run -p 5000:5000 `
+--name ts-docker-container3-module3 `
+-v ts-docker-logs:/app/logs `
+-w /app `
+-v "%cd%":/app `
+-v /app/node_modules `
+--rm ts-docker-module3:v3
+```
+
+```bash
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "%cd%":/app -v /app/node_modules --rm ts-docker-module3:v3
+```
+
+- `pwd` - present working directory
+
+## 3-9 Running a Container Directly with VS Code
