@@ -1,4 +1,5 @@
-FROM node:20
+# === NODE TAKING ALMOST 1GB =========
+FROM node:20 
 
 WORKDIR /app
 

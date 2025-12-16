@@ -387,7 +387,7 @@ or
 ```
 
 ```bash
- docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "/$(pwd):/app" -v /app/node_modules --rm ts-docker-module3:v3
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "/$(PWD)":/app -v /app/node_modules --rm ts-docker-module3:v3
 ```
 
 - `pwd` - present working directory
@@ -424,6 +424,78 @@ or
  docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "%cd%":/app -v /app/node_modules --rm ts-docker-module3:v3
 ```
 
-- `pwd` - present working directory
+- `cd` - current directory
 
 ## 3-9 Running a Container Directly with VS Code
+
+- install `Dev Containers` extension of VS code
+- `.devcontainer` create this folder wihtin project root
+- create a file `devcontainer.json` wihtin `.devcontainer` folder
+- the file will contain follwing code
+
+```bash
+{
+  // container name
+  "name": "ts-docker-container3-module3",
+  "image": "node:20",
+  "workspaceFolder": "/app",
+  "mounts": [
+    // Bind mount for your local project
+    "source=/F:/9. Docker/docker-with-typescript-backend-module3,target=/app,type=bind",
+
+    // Named volume for logs (similar to: -v ts-docker-logs://app/logs)
+    "source=ts-docker-logs,target=/app/logs,type=volume",
+
+    // Anonymous volume for node_modules (similar to: -v //app/node_modules)
+    "target=/app/node_modules,type=volume"
+  ],
+  "runArgs": [
+    "--name",
+    "ts-docker-container3-module3",
+    "-p",
+    "5000:5000",
+    "--rm" // Automatically remove the container after exiting VS Code
+  ],
+  "postCreateCommand": "npm install"
+}
+```
+
+- ctrl+shift+p and write `reopen dev container`
+- a new vs code window open and a log can be seen
+
+![alt-text](/module_3/image_6.PNG)
+
+- we are now in linux
+- delete node_modules, logs folder from local code base.
+- now from linux terminal we can run the project by using following command:
+
+```bash
+yarn dev
+```
+
+- make any change to local code base, it will show in website.
+- if we make any change to container in linux environment, then it will show in website.
+
+## 3-10 Working with .env file & .dockerignore file
+
+- we use `.dockerignore` file
+
+  - to reduce image size
+
+- build a new image
+
+```bash
+docker build -t ts-docker-m3:v4 .
+```
+
+- if `.env` file remain in root directory
+
+```bash
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "/$(PWD)":/app -v /app/node_modules --rm --env-file ./.env ts-docker-module3:v3
+```
+
+- if `.env` file remain in any other directory
+
+```bash
+ docker run -p 5000:5000 --name ts-docker-container3-module3 -v ts-docker-logs:/app/logs -w /app -v "/$(PWD)":/app -v /app/node_modules --rm --env-file /config/.env ts-docker-module3:v3
+```
