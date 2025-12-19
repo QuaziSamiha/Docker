@@ -1,0 +1,54 @@
+services:
+  mongodb-container:
+    image: "mongo"
+    volumes:
+      - ts-docker-db:/data/db # named volume and list down to the volume service
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=ts-docker-user
+    #   - MONGO_INITDB_ROOT_PASSWORD=ts-docker
+
+    env_file:
+      - ./docker-with-typescipt-backend/.env
+
+  ts-docker-backend-container:
+    build:
+      context: ./docker-with-typescipt-backend
+      dockerfile: Dockerfile
+      # dockerfile: Dockerfile.production
+      # dockerfile: Dockerfile.dev
+
+    ports:
+      - "5000:5000"
+
+    volumes:
+      - ts-docker-logs:/app/logs # named volume and list down to the volume service
+      - ./docker-with-typescipt-backend:/app # bind mount - at first has to provide project's relative path
+      - /app/node_modules # anonymous volume - to resolve clash of bind mount
+
+    env_file:
+      - ./docker-with-typescipt-backend/.env
+
+    depends_on:
+      - mongodb-container # service name = container name
+
+  # ts-docker-frontend-conatiner:
+  #   build:
+  #     context: ./docker-with-nextjs-frontend
+  #     dockerfile: Dockerfile
+
+  #   ports:
+  #     - "3000:3000"
+
+  #   volumes:
+  #     - ./docker-with-nextjs-frontend:/app
+
+  #   env_file:
+  #     - ./docker-with-nextjs-frontend/.env.local
+
+  #   depends_on:
+  #     - ts-docker-backend-container
+
+# we need to create a volume list -- list wil contain all the named volumes only
+volumes:
+  ts-docker-db:
+  ts-docker-logs:
