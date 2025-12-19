@@ -31,22 +31,22 @@ services:
     depends_on:
       - mongodb-container # service name = container name
 
-  # ts-docker-frontend-conatiner:
-  #   build:
-  #     context: ./docker-with-nextjs-frontend
-  #     dockerfile: Dockerfile
+  ts-docker-frontend-conatiner:
+    build:
+      context: ./docker-with-nextjs-frontend
+      dockerfile: Dockerfile
 
-  #   ports:
-  #     - "3000:3000"
+    ports:
+      - "3000:3000"
 
-  #   volumes:
-  #     - ./docker-with-nextjs-frontend:/app
+    volumes:
+      - ./docker-with-nextjs-frontend:/app  # bind mount
 
-  #   env_file:
-  #     - ./docker-with-nextjs-frontend/.env.local
+    env_file:
+      - ./docker-with-nextjs-frontend/.env.local
 
-  #   depends_on:
-  #     - ts-docker-backend-container
+    depends_on:
+      - ts-docker-backend-container
 
 # we need to create a volume list -- list wil contain all the named volumes only
 volumes:

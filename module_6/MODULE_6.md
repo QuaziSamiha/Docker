@@ -44,6 +44,7 @@ docker-compose -v
 DB_URL=mongodb://ts-docker-user:ts-docker@mongodb-container:27017/ts-docker-db?authSource=admin
 MONGO_INITDB_ROOT_USERNAME=ts-docker-user
 MONGO_INITDB_ROOT_PASSWORD=ts-docker
+PORT=5000
 ```
 
 - run
@@ -72,9 +73,42 @@ docker-compose down -v
 
 - [PH Video](https://web.programming-hero.com/l2-b3-reward-courses/video/l2-b3-reward-courses-6-4-creating-service-for-node-express-container-in-docker-compose-file)
 
-- in docker compose network is created by default 
+- in docker compose network is created by default
 - run in detached mode:
 
 ```bash
 docker compose up -d
 ```
+
+- check in browser backend is running or not
+
+## 6-5 Creating Service For NextJS Frontend Container In Docker Compose File
+
+- [PH Video](https://web.programming-hero.com/l2-b3-reward-courses/video/l2-b3-reward-courses-6-5-creating-service-for-nextjs-frontend-container-in-docker-compose-file)
+
+```bash
+docker compose up
+```
+
+- .env.local
+
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://ts-docker-backend-container:5000
+WATCHPACK_POLLING=true
+```
+
+- to delete all volume and containers
+
+```bash
+docker-compose down -v
+```
+
+- explore health check
+
+## 6-6 Introduction to Docker Utility Container
+
+- [PH Video](https://web.programming-hero.com/l2-b3-reward-courses/video/l2-b3-reward-courses-6-6-introduction-to-docker-utility-container)
+
+## 6-7 Creating A Node-Express Project From Scratch With Utility Container
+
+- [PH Video](https://web.programming-hero.com/l2-b3-reward-courses/video/l2-b3-reward-courses-6-7-creating-a-node-express-project-from-scratch-with-utility-container)
