@@ -112,3 +112,63 @@ docker-compose down -v
 ## 6-7 Creating A Node-Express Project From Scratch With Utility Container
 
 - [PH Video](https://web.programming-hero.com/l2-b3-reward-courses/video/l2-b3-reward-courses-6-7-creating-a-node-express-project-from-scratch-with-utility-container)
+- create a folder `node utility` and within it create `Dockerfile`
+
+- [node - Docker Official Image](https://hub.docker.com/_/node)
+- node - alpine - lighter version of node
+- write only wihtin dockerfile
+
+```bash
+FROM node:20-alpine
+
+WORKDIR /app
+```
+
+- run
+
+```bash
+docker build -t node-util .
+```
+
+- create another folder to create a project from scratch `docker project with uitlity container`
+
+```bash
+docker run --name node-utility -w /app -v "/${PWD}":/app -it -d --rm node-utility
+```
+
+```bash
+docker run `
+--name node-util `
+-w /app `
+-v "${PWD}:/app" `
+-it `
+-d `
+--rm node-util
+```
+
+- container and image name will be same
+- we want to run a container, the container will only contain an evironment not any code
+
+```bash
+docker ps -a
+```
+
+```bash
+docker exec -it node-util npm init -y
+```
+
+- package.json will be created within our project folder
+
+```bash
+docker exec -it node-util npm install express
+```
+
+- package-lock.json and node_modules will be created.
+
+```bash
+docker exec -it node-util npm install -D typescript
+```
+
+- if we have no node in our system instead we can create node project by using this container
+
+**19 Dec, 25**
