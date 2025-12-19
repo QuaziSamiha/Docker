@@ -58,3 +58,183 @@ docker container stop mongodb-container
 - so till now we have dockerize the db and run the backend locally and connect them.
 
 ## 5-4 Dockerizing NodeJS App
+
+```
+DB_URL=mongodb://localhost:27017/
+```
+
+- here we publish a port and this is not secure, anyone can access
+- so we will create a network so that we don't need to publish the port
+
+```bash
+docker network create ts-docker-next
+```
+
+```bash
+docker network ls
+```
+
+```bash
+docker container stop mongodb-container
+```
+
+```bash
+docker run --name mongodb-container --rm --network ts-docker-next mongo
+```
+
+```
+DB_URL=mongodb://mongodb-container:27017/
+```
+
+- build image for backend:
+
+```bash
+docker build -t ts-docker-backend-m5:v1 .
+```
+
+- run backend container:
+
+```bash
+ docker run -p 5000:5000 `
+--name ts-docker-backend-container `
+-v ts-docker-logs:/app/logs `
+-w /app `
+-v "${PWD}:/app" `
+-v /app/node_modules `
+--env-file ./.env `
+--network ts-docker-next `
+--rm ts-docker-backend-m5:v1
+```
+
+## 5-5 Dockerizing NextJS App
+
+- build an image for frontend
+
+```bash
+docker build -t ts-docker-frontend:v1 .
+```
+
+```bash
+docker run -p 3000:3000 `
+--name ts-docker-frontend-container `
+--env-file .env.local `
+--network ts-docker-next `
+--rm  ts-docker-frontend:v1
+```
+
+```bash
+docker ps -a
+```
+
+- from
+
+```
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
+```
+
+- to
+
+```
+NEXT_PUBLIC_API_BASE_URL=http://ts-docker-backend-container:5000
+```
+
+- always localhost = container-name
+- for this change into `env.local` file we need to build an image again
+- to avoid this hassle we need to add a volume
+
+```bash
+docker build -t ts-docker-frontend:v2 .
+```
+
+```bash
+docker run -p 3000:3000 `
+--name ts-docker-frontend-container `
+-w /app `
+-v "${PWD}:/app" `
+--env-file .env.local `
+-v /app/node_modules `
+--network ts-docker-next `
+--rm  ts-docker-frontend:v2
+```
+
+- in backend to connect at see change in code dynamically we add `--poll` flag, but in frontend we have no such scope to do that
+- in that case in our command we can add environment vairable along with environment variable
+
+```bash
+docker run -p 3000:3000 `
+--name ts-docker-frontend-container `
+-w /app `
+-v "${PWD}:/app" `
+--env-file .env.local `
+-v /app/node_modules `
+--network ts-docker-next `
+-e WATCHPACK_POLLING=true `
+--rm ts-docker-frontend:v2
+```
+
+- we can also keep this to loca.env file
+
+## 5-7 Persisting Data is MongoDB Container
+
+- after deleting container the data are not surviving and another issue is anyone can access the database, the database is not secure.
+- stop the mongodb container
+
+- [mongo docker official image](https://hub.docker.com/_/mongo)
+- search ctrl+f and write volume
+- here we will add a name volume
+
+```bash
+docker run --name mongodb-container --rm -v ts-dcoker-db:/data/db --network ts-docker-next mongo
+```
+
+- so here by using named volume we are connecting our local machine with mongo container and persist our data -- this is a simple way to persist data
+- [PH Video](https://web.programming-hero.com/l2-b3-reward-courses/video/l2-b3-reward-courses-5-7-persisting-data-is-mongodb-container)
+
+## 5-8 Adding Security Layer For The MongoDB Container
+
+- [PH Video](https://web.programming-hero.com/l2-b3-reward-courses/video/l2-b3-reward-courses-5-8-adding-security-layer-for-the-mongodb-container)
+
+- [mongo docker official image](https://hub.docker.com/_/mongo)
+- search ctrl+f and write username
+- search ctrl+f and write security
+
+- stop running mongodb container and backend container (if running)
+
+- to see named volume
+
+```bash
+docker volume ls
+```
+
+- at first remove all running container associated with the volume
+- to remove all volume
+
+```bash
+docker volume prune -f
+```
+
+- now add an environment variable with previous command
+
+```bash
+docker run `
+--name mongodb-container `
+-v ts-dcoker-db:/data/db `
+-e MONGO_INITDB_ROOT_USERNAME=ts-docker-user `
+-e MONGO_INITDB_ROOT_PASSWORD=ts-docker `
+--network ts-docker-next `
+--rm mongo
+```
+
+- run backend container 
+
+```bash
+docker run -p 5000:5000 `
+--name ts-docker-backend-container `
+-v ts-docker-logs:/app/logs `
+-w /app `
+-v "${PWD}:/app" `
+-v /app/node_modules `
+--env-file ./.env `
+--network ts-docker-next `
+--rm ts-docker-backend-m5:v1
+```
