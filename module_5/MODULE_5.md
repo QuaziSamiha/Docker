@@ -31,3 +31,30 @@ docker images
 ```bash
 docker run --name mongodb-container --rm mongo
 ```
+
+**19 Dec, 25**
+
+- we are not exposing port differently as we are running database container and backend container in same network
+- but if the scenario is that we are running backend locally and the database is running within container then we need to expose a port
+
+```bash
+docker run --name mongodb-container --rm -p 27017:27017 mongo
+```
+
+- now if we use:
+
+```
+DB_URL=mongodb://localhost:27017/
+```
+
+![alt-text](/module_5/image_1.PNG)
+
+```bash
+docker container stop mongodb-container
+```
+
+![alt-text](/module_5/image_2.PNG)
+
+- so till now we have dockerize the db and run the backend locally and connect them.
+
+## 5-4 Dockerizing NodeJS App

@@ -14,6 +14,36 @@
             "date": 1766025569109,
             "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\successes\\docker-2025-12-18-08-39-29-success.log",
             "hash": "129d87f5404a2351e16f60e0dd86944873a36c1f7fb5a042a367239fa3ce0a5c"
+        },
+        {
+            "date": 1766108637239,
+            "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\successes\\docker-2025-12-19-07-43-57-success.log",
+            "hash": "e7d6883af6aecf1ffab4443ed8284413a3839bbdbd7acfc1ba439779c7e5b1d6"
+        },
+        {
+            "date": 1766108638060,
+            "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\successes\\docker-2025-12-19-07-43-58-success.log",
+            "hash": "e2d6fc8f71faca0de0f264be5bb36fa4bd505d4f2c26d1ec9401e6b50a30e31f"
+        },
+        {
+            "date": 1766108850710,
+            "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\successes\\docker-2025-12-19-07-47-30-success.log",
+            "hash": "0a47388bbd004ee908c9a333079caa979f86936a2810bc986375c1c981a8f4bb"
+        },
+        {
+            "date": 1766109108949,
+            "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\successes\\docker-2025-12-19-07-51-48-success.log",
+            "hash": "daae8bce04e8f570beced5956b1fccecd04cc494acfdd3458260e22aa197d72e"
+        },
+        {
+            "date": 1766109267797,
+            "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\successes\\docker-2025-12-19-07-54-27-success.log",
+            "hash": "0ff1539c72619d9faca8b38796a48301fc82bbaf8d683e0b4712bd4936135d5f"
+        },
+        {
+            "date": 1766109392682,
+            "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\successes\\docker-2025-12-19-07-56-32-success.log",
+            "hash": "ff63c1467dc7497034eef20b73090654dd21db7666c2c7c26fcd791ce2766617"
         }
     ],
     "hashType": "sha256"

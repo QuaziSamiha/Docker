@@ -9,6 +9,16 @@
             "date": 1766025168485,
             "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\errors\\docker-2025-12-18-08-error.log",
             "hash": "dc5800d49aa3b46867dd62e328235091d582c0bf8cfd4a5d9e456e5042cf4f22"
+        },
+        {
+            "date": 1766108637261,
+            "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\errors\\docker-2025-12-19-07-error.log",
+            "hash": "f0a46b72fa8d02a5c9d115a7de73da0f4950df92c31fb65cea1f11119ffdef4d"
+        },
+        {
+            "date": 1766110530315,
+            "name": "F:\\9. Docker\\module_5\\docker-with-typescript-backend\\logs\\winston\\errors\\docker-2025-12-19-08-error.log",
+            "hash": "04bb20c7693fa107c386f46cb9cca48a5abca3685b9c1c3d1c3580a5bae5b2ef"
         }
     ],
     "hashType": "sha256"
